@@ -1,14 +1,14 @@
 import React from 'react';
-import './App.css';
+import { AppContainer }  from './app.styles';
 import Header from './components/Header';
 import ImagesComponent from './components/Images';
 
 const App = () => {
   return (
-    <div>
+    <AppContainer>
       <Header />
       <ImagesComponent />
-    </div>
+    </AppContainer>
   );
 }
 

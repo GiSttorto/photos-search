@@ -26,7 +26,9 @@ export const handleSearch = (value: string) => {
     });
     
     try {
-      await serverApi.search.getPhotos({query: value})
+      await serverApi.search.getPhotos({
+        query: value
+      })
       .then((result: any) => {
         dispatch(fetchCurrentSearch(result.response?.results))
       })

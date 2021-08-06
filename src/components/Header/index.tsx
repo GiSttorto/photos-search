@@ -1,7 +1,8 @@
 import React, {useState} from 'react';
 import { ReactComponent as Logo } from '../../assets/Photos-Search.svg'
-import { HeaderContainer, LogoContainer } from './header.styles';
+import { HeaderContainer, LogoContainer, FormContainer, SearchButton } from './header.styles';
 import { handleSearch } from '../../redux/search/search.actions';
+import { TextField } from '@material-ui/core';
 import { connect } from 'react-redux';
 
 type HeaderTypes = {
@@ -12,9 +13,10 @@ const Header: React.FC<HeaderTypes> = ({ handleSearch }) => {
   const [newSearch, setNewSearch] = useState('')
 
 
-  const handleSubmit = (e: any) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
-    handleSearch(newSearch);
+    await handleSearch(newSearch);
+    setNewSearch('')
   };
 
   return(
@@ -22,14 +24,17 @@ const Header: React.FC<HeaderTypes> = ({ handleSearch }) => {
       <LogoContainer>
         <Logo style={{ maxHeight: '100%', maxWidth: '100%'}} />
       </LogoContainer>
-      <form onSubmit={handleSubmit}>
-        <input
-          type='search'
+      <FormContainer onSubmit={handleSubmit}>
+        <TextField
+          style={{ width: '40%', marginRight: '12px'}}
+          placeholder='Search for a photography:'
+          variant="outlined"
           value={newSearch}
           onChange={e => setNewSearch(e.target.value)}
+          inputProps={{ style: {padding: 12, fontFamily: 'Zilla Slab', fontSize: 18 }}}
         />
-        <button type='submit'>search</button>
-      </form>
+        <SearchButton type='submit'>SEARCH</SearchButton>
+      </FormContainer>
     </HeaderContainer>
   )
 }
