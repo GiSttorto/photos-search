@@ -16,7 +16,7 @@ const Header: React.FC<HeaderTypes> = ({ handleSearch }) => {
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     await handleSearch(newSearch);
-    setNewSearch('')
+    // setNewSearch('')
   };
 
   return(
@@ -35,6 +35,23 @@ const Header: React.FC<HeaderTypes> = ({ handleSearch }) => {
         />
         <SearchButton type='submit'>SEARCH</SearchButton>
       </FormContainer>
+      <div>
+        <select>
+          <option value="any">Any orientation</option>
+          <option value="landscape">Landscape</option>
+          <option value="portrait">Portrait</option>
+          <option value="square">Square</option>
+        </select>
+        <select>
+          <option value="grapefruit">Any color</option>
+          <option value="lime">Black and white</option>
+          <option value="coconut">Tones:</option>
+        </select>
+        <select>
+          <option value="grapefruit">Sort by Relevance</option>
+          <option value="lime">Newest</option>
+        </select>
+      </div>
     </HeaderContainer>
   )
 }

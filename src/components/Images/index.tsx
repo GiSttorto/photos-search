@@ -1,26 +1,30 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { ImagesContainer, Image } from './images.styles';
+import ImagesContainer from './images-container.component';
+import CircularProgress from '@material-ui/core/CircularProgress';
+import { ImagesComponentStyles, CircularProgContainer } from './images.styles';
 
 type ImagesComponentProps = {
-  photosResp: any
+  startSearch: any;
 }
 
-const ImagesComponent: React.FC<ImagesComponentProps> = ({ photosResp }) => (
-  photosResp.length === 0 ? (
-    <h2>Sorry, no results found.</h2>
-  ) : (
-    <ImagesContainer>
-      {photosResp.map((photos: any, idx: number) => (
-        <Image key={idx} src={photos.urls.small} alt={photos.alt_description} />
-      ))}
-    </ImagesContainer>
-  )
-)
+const ImagesComponent: React.FC<ImagesComponentProps> = ({ startSearch }) => {
 
+  return (
+    <ImagesComponentStyles>
+      {startSearch ? (
+        <CircularProgContainer>
+          <CircularProgress color='inherit' />
+        </CircularProgContainer>
+      ) : (
+        <ImagesContainer />
+      )}
+    </ImagesComponentStyles>
+  );
+};
 
 const mapStateToProsp = (state: any) => ({
-  photosResp: state.search.search
-})
+  startSearch: state.search.startSearch
+});
 
 export default connect(mapStateToProsp)(ImagesComponent);

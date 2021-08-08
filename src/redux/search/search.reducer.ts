@@ -2,7 +2,7 @@ import SearchActionsTypes from './search.types';
 
 export interface SearchStateType {
   startSearch: boolean,
-  search: Object[] | null,
+  search: any;
   error: string | null
 }
 

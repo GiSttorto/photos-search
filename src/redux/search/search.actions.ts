@@ -15,25 +15,23 @@ export const setCurrentSearch = (error: any) => ({
   payload: error
 });
 
+export const serverApi = createApi({
+  accessKey: `${process.env.REACT_APP_ACCESS_KEY}`,
+});
+
 
 export const handleSearch = (value: string) => {
-
   return async (dispatch: any) => {
     dispatch(startCurrentSearch())
-
-    const serverApi = createApi({
-      accessKey: `${process.env.REACT_APP_ACCESS_KEY}`,
-    });
-    
     try {
       await serverApi.search.getPhotos({
         query: value
       })
-      .then((result: any) => {
-        dispatch(fetchCurrentSearch(result.response?.results))
+      .then((res: any) => {
+        const { results } = res.response;
+        dispatch(fetchCurrentSearch(results))
       })
       .catch(error => dispatch(setCurrentSearch(error)));
-
     } catch (error) {
       dispatch(setCurrentSearch(error))
     }
