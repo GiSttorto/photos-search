@@ -1,9 +1,7 @@
-import SearchActionsTypes from './search.types';
-
 export interface SearchStateType {
   startSearch: boolean,
   search: any;
-  error: string | null;
+  error: string | null
 }
 
 const initialState = {
@@ -14,19 +12,19 @@ const initialState = {
 
 export const searchReducer = (state = initialState, action: any): SearchStateType => {
   switch(action.type) {
-    case SearchActionsTypes.START_CURRENT_SEARCH:
+    case 'START_CURRENT_SEARCH':
       return {
         ...state,
         startSearch: true
       }
-    case SearchActionsTypes.FETCH_CURRENT_SEARCH:
+    case 'FETCH_CURRENT_SEARCH':
       return {
         ...state,
         startSearch: false,
         search: action.payload,
         error: null
       }
-    case SearchActionsTypes.ERROR_CURRENT_SEARCH:
+    case 'ERROR_CURRENT_SEARCH':
       return {
         ...state,
         startSearch: false,
