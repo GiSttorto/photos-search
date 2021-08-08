@@ -4,7 +4,7 @@ import ImagesComponent from '../../components/Images';
 const SearchPhotosPage = () => {
 
   return (
-    <div style={{ width:'75%'}}>
+    <div style={{ width:'80%'}}>
       <ImagesComponent />
     </div>
   );

@@ -33,7 +33,8 @@ const HomePage = () => {
     <>
       <HomePageContainer>
         <HomePageBody>
-          <div style={{ width:'75%'}}>
+          <div style={{ width:'95%'}}>
+            {/* <div style={{ width: '100%', height: '550px', backgroundImage: 'url(./../images/HomepagePhoto.jpeg)', backgroundSize: 'cover', backgroundPosition: '60px', backgroundRepeat: 'no-repeat'}} /> */}
             <ImagesComponent />
           </div>
         </HomePageBody>

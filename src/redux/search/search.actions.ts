@@ -20,12 +20,14 @@ export const serverApi = createApi({
 });
 
 
-export const handleSearch = (value: string) => {
+export const handleSearch = (value: string, page: number) => {
   return async (dispatch: any) => {
     dispatch(startCurrentSearch())
     try {
       await serverApi.search.getPhotos({
-        query: value
+        query: value,
+        perPage: 100,
+        page: page
       })
       .then((res: any) => {
         const { results } = res.response;

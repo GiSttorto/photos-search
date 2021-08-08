@@ -12,14 +12,15 @@ type HeaderTypes = {
 }
 
 const Header: React.FC<HeaderTypes> = ({ handleSearch }) => {
-  const [newSearch, setNewSearch] = useState('')
+  const [newSearch, setNewSearch] = useState('');
+  const [ currentPage, setCurrentPage ] = useState(1);
   const history = useHistory();
 
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     history.push(`/photos/${newSearch === '' ? '/' : newSearch}`)
-    await handleSearch(newSearch);
+    await handleSearch(newSearch,currentPage);
   };
 
   return(
@@ -30,7 +31,7 @@ const Header: React.FC<HeaderTypes> = ({ handleSearch }) => {
       <FormContainer onSubmit={handleSubmit}>
         <TextField
           style={{ width: '40%', marginRight: '12px'}}
-          placeholder='Search for a photography:'
+          placeholder='Search for a photography: '
           variant="outlined"
           value={newSearch}
           onChange={e => setNewSearch(e.target.value)}
@@ -38,6 +39,7 @@ const Header: React.FC<HeaderTypes> = ({ handleSearch }) => {
         />
         <SearchButton type='submit'>SEARCH</SearchButton>
       </FormContainer>
+      {/* TODO */}
       {/* <div>
         <select>
           <option value="any">Any orientation</option>
@@ -60,7 +62,7 @@ const Header: React.FC<HeaderTypes> = ({ handleSearch }) => {
 }
 
 const mapDispatchToProps = (dispatch: any) => ({
-  handleSearch: (value: string) => dispatch(handleSearch(value))
+  handleSearch: (value: string, page: number) => dispatch(handleSearch(value, page))
 })
 
 export default connect(null, mapDispatchToProps)(Header);
