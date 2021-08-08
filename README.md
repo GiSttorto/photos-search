@@ -28,5 +28,6 @@ Your application’s Access Key and Secret Key  must remain confidential. This m
 - Add download and like tools
 - Add links to author social medias
 - Create better style for author details when hover image
-
+- Implement testing
+- Create Rest call for API
 
