@@ -2,8 +2,10 @@ import React, {useState} from 'react';
 import { ReactComponent as Logo } from '../../assets/Photos-Search.svg'
 import { HeaderContainer, LogoContainer, FormContainer, SearchButton } from './header.styles';
 import { handleSearch } from '../../redux/search/search.actions';
+import { useHistory } from "react-router-dom";
 import { TextField } from '@material-ui/core';
 import { connect } from 'react-redux';
+
 
 type HeaderTypes = {
   handleSearch: any;
@@ -11,17 +13,18 @@ type HeaderTypes = {
 
 const Header: React.FC<HeaderTypes> = ({ handleSearch }) => {
   const [newSearch, setNewSearch] = useState('')
+  const history = useHistory();
 
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
+    history.push(`/photos/${newSearch === '' ? '/' : newSearch}`)
     await handleSearch(newSearch);
-    // setNewSearch('')
   };
 
   return(
     <HeaderContainer>
-      <LogoContainer>
+      <LogoContainer to='/'>
         <Logo style={{ maxHeight: '100%', maxWidth: '100%'}} />
       </LogoContainer>
       <FormContainer onSubmit={handleSubmit}>
@@ -35,7 +38,7 @@ const Header: React.FC<HeaderTypes> = ({ handleSearch }) => {
         />
         <SearchButton type='submit'>SEARCH</SearchButton>
       </FormContainer>
-      <div>
+      {/* <div>
         <select>
           <option value="any">Any orientation</option>
           <option value="landscape">Landscape</option>
@@ -51,7 +54,7 @@ const Header: React.FC<HeaderTypes> = ({ handleSearch }) => {
           <option value="grapefruit">Sort by Relevance</option>
           <option value="lime">Newest</option>
         </select>
-      </div>
+      </div> */}
     </HeaderContainer>
   )
 }

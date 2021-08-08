@@ -1,11 +1,5 @@
 import styled from "styled-components";
 
-export const ImagesComponentStyles= styled.div`
-  width: 100%;
-  display: flex;
-  justify-content: center;
-`;
-
 export const ImagesBox = styled.div`
   margin-top: 5%;
   column-count: 3;

@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import ImagesContainer from './images-container.component';
 import CircularProgress from '@material-ui/core/CircularProgress';
-import { ImagesComponentStyles, CircularProgContainer } from './images.styles';
+import { CircularProgContainer } from './images.styles';
 
 type ImagesComponentProps = {
   startSearch: any;
@@ -11,7 +11,7 @@ type ImagesComponentProps = {
 const ImagesComponent: React.FC<ImagesComponentProps> = ({ startSearch }) => {
 
   return (
-    <ImagesComponentStyles>
+    <>
       {startSearch ? (
         <CircularProgContainer>
           <CircularProgress color='inherit' />
@@ -19,7 +19,7 @@ const ImagesComponent: React.FC<ImagesComponentProps> = ({ startSearch }) => {
       ) : (
         <ImagesContainer />
       )}
-    </ImagesComponentStyles>
+    </>
   );
 };
 

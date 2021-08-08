@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link as RouterLink } from 'react-router-dom';
 
 export const HeaderContainer = styled.div`
   height: 50px;
@@ -10,7 +11,7 @@ export const HeaderContainer = styled.div`
   border-bottom: 0.8px solid #545454;
 `;
 
-export const LogoContainer = styled.div`
+export const LogoContainer = styled(RouterLink)`
   margin-left: 20px;
   width: 5%;
 `;
