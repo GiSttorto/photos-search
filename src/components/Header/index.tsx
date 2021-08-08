@@ -9,17 +9,17 @@ import { connect } from 'react-redux';
 
 type HeaderTypes = {
   handleSearch: any;
+  currentPage: any;
 }
 
-const Header: React.FC<HeaderTypes> = ({ handleSearch }) => {
+const Header: React.FC<HeaderTypes> = ({ handleSearch, currentPage }) => {
   const [newSearch, setNewSearch] = useState('');
   const history = useHistory();
-
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     history.push(`/photos/${newSearch === '' ? '/' : newSearch}`)
-    await handleSearch(newSearch);
+    await handleSearch(newSearch, currentPage);
   };
 
   return(
@@ -64,4 +64,8 @@ const mapDispatchToProps = (dispatch: any) => ({
   handleSearch: (value: string, page: number) => dispatch(handleSearch(value, page))
 })
 
-export default connect(null, mapDispatchToProps)(Header);
+const mapStateToProps = (state: any) => ({
+  currentPage: state.search
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

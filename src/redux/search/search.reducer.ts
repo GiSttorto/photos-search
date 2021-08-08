@@ -4,12 +4,18 @@ export interface SearchStateType {
   startSearch: boolean,
   search: any;
   error: string | null;
+  currentPage: number;
+  searchValue: string;
+  totalPages: number;
 }
 
 const initialState = {
   startSearch: false,
   search: [],
-  error: null
+  error: null,
+  currentPage: 1,
+  searchValue: '',
+  totalPages: 0
 }
 
 export const searchReducer = (state = initialState, action: any): SearchStateType => {
@@ -24,6 +30,7 @@ export const searchReducer = (state = initialState, action: any): SearchStateTyp
         ...state,
         startSearch: false,
         search: action.payload,
+        totalPages: action.totalPages,
         error: null
       }
     case SearchActionsTypes.ERROR_CURRENT_SEARCH:
@@ -32,6 +39,16 @@ export const searchReducer = (state = initialState, action: any): SearchStateTyp
         startSearch: false,
         search: null,
         error: action.error
+      }
+    case SearchActionsTypes.SET_CURRENT_PAGE:
+      return {
+        ...state,
+        currentPage: state.currentPage + 1
+      }
+    case SearchActionsTypes.SET_CURRENT_VALUE:
+      return {
+        ...state,
+        searchValue: action.value
       }
     default:
       return state;

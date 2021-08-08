@@ -24,7 +24,9 @@ const ImagesComponent: React.FC<ImagesComponentProps> = ({ startSearch }) => {
 };
 
 const mapStateToProsp = (state: any) => ({
-  startSearch: state.search.startSearch
+  startSearch: state.search.startSearch,
 });
+
+
 
 export default connect(mapStateToProsp)(ImagesComponent);

@@ -1,27 +1,26 @@
 import React, { useEffect, useRef } from 'react';
 import { HomePageContainer, HomePageBody }  from './homepage.styles';
 import ImagesComponent from '../../components/Images';
-import { startCurrentSearch, fetchCurrentSearch, serverApi, setCurrentSearch } from '../../redux/search/search.actions';
+import { startCurrentSearch, fetchCurrentSearch, setErrorSearch, serverApi, setSearchValue } from '../../redux/search/search.actions';
 import { useDispatch } from 'react-redux';
 
 const HomePage = () => {
-
   const dispatch = useDispatch();
 
   const fetchingRandomData = useRef(() => {})
 
   fetchingRandomData.current = () => {
+    dispatch(setSearchValue(''))
     dispatch(startCurrentSearch())
-
     try {
       serverApi.photos.getRandom({
         count: 30
       }).then((results: any) => {
         const { response } = results;
-        dispatch(fetchCurrentSearch(response));
+        dispatch(fetchCurrentSearch(response, 500));
       });
     } catch (error) {
-      dispatch(setCurrentSearch(error))
+      dispatch(setErrorSearch(error))
     }
   }
 
