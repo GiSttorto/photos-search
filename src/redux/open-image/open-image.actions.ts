@@ -1,14 +1,5 @@
-export const startCurrentSearch = () => ({
-  type: 'START_CURRENT_SEARCH',
+export const modalOpen = () => ({
+  type: 'IS_MODAL_OPEN',
 });
 
-export const fetchCurrentSearch = (search: any) => ({
-  type: 'FETCH_CURRENT_SEARCH',
-  payload: search
-});
-
-export const setCurrentSearch = (error: any) => ({
-  type: 'ERROR_CURRENT_SEARCH',
-  payload: error
-});
 

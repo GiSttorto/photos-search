@@ -26,7 +26,6 @@ export const handleSearch = (value: string, page: number) => {
     try {
       await serverApi.search.getPhotos({
         query: value,
-        perPage: 100,
         page: page
       })
       .then((res: any) => {

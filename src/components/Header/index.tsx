@@ -13,14 +13,13 @@ type HeaderTypes = {
 
 const Header: React.FC<HeaderTypes> = ({ handleSearch }) => {
   const [newSearch, setNewSearch] = useState('');
-  const [ currentPage, setCurrentPage ] = useState(1);
   const history = useHistory();
 
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     history.push(`/photos/${newSearch === '' ? '/' : newSearch}`)
-    await handleSearch(newSearch,currentPage);
+    await handleSearch(newSearch);
   };
 
   return(
